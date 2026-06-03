@@ -3,782 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LÅTCH CAPITAL — Private Capital & Strategic Advisory</title>
-  <meta name="description" content="LÅTCH CAPITAL is a private capital and strategic advisory firm for founders, operators, and families building durable enterprise value." />
-  <meta name="theme-color" content="#050505" />
+  <title>LÅTCH CAPITAL</title>
+  <meta name="description" content="LÅTCH CAPITAL is a holding company and venture capital platform investing in exceptional ideas." />
   <style>
-    :root {
-      --black: #050505;
-      --ink: #0b0a08;
-      --charcoal: #11100d;
-      --cream: #f4efe3;
-      --cream-2: #fff9ed;
-      --muted: #a9a094;
-      --muted-dark: #5f584d;
-      --gold: #c8a45d;
-      --gold-2: #f3d78d;
-      --bronze: #7b5921;
-      --line: rgba(255,255,255,.12);
-      --soft-line: rgba(5,5,5,.09);
-      --radius-xl: 42px;
-      --radius-lg: 30px;
-      --ease: cubic-bezier(.2,.8,.2,1);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--black);
-      color: var(--cream);
-      overflow-x: hidden;
-    }
-
-    body::selection { background: var(--gold); color: var(--black); }
-    a { color: inherit; text-decoration: none; }
-
-    .loader {
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      display: grid;
-      place-items: center;
-      background: #050505;
-      animation: loaderOut 1.1s var(--ease) 1.65s forwards;
-    }
-
-    .loader-mark {
-      position: relative;
-      letter-spacing: 7px;
-      font-size: 15px;
-      color: var(--cream);
-      animation: markLift 1.4s var(--ease) forwards;
-    }
-
-    .loader-mark::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 7px;
-      bottom: -14px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold-2), transparent);
-      transform-origin: left;
-      animation: lineLoad 1.45s var(--ease) forwards;
-    }
-
-    @keyframes lineLoad { from { transform: scaleX(0); opacity: .35; } to { transform: scaleX(1); opacity: 1; } }
-    @keyframes markLift { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    @keyframes loaderOut { to { opacity: 0; visibility: hidden; pointer-events: none; } }
-
-    .noise {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 100;
-      opacity: .05;
-      background-image: radial-gradient(circle at 20% 20%, #fff 0 1px, transparent 1px), radial-gradient(circle at 80% 10%, #fff 0 1px, transparent 1px), radial-gradient(circle at 40% 70%, #fff 0 1px, transparent 1px);
-      background-size: 90px 90px, 120px 120px, 75px 75px;
-    }
-
-    .hero-wrap {
-      min-height: 100vh;
-      position: relative;
-      isolation: isolate;
-      background:
-        radial-gradient(circle at 76% 16%, rgba(200,164,93,.22), transparent 31%),
-        radial-gradient(circle at 16% 84%, rgba(255,255,255,.07), transparent 29%),
-        linear-gradient(135deg, #050505 0%, #14120f 52%, #050505 100%);
-      overflow: hidden;
-    }
-
-    .hero-wrap::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-      background-size: 76px 76px;
-      mask-image: radial-gradient(circle at 62% 16%, black 0%, transparent 68%);
-      z-index: -1;
-    }
-
-    .aurora {
-      position: absolute;
-      width: 62vw;
-      height: 62vw;
-      border-radius: 999px;
-      right: -23vw;
-      top: -30vw;
-      background: conic-gradient(from 140deg, transparent, rgba(200,164,93,.18), transparent, rgba(255,255,255,.08), transparent);
-      filter: blur(30px);
-      opacity: .9;
-      animation: rotate 22s linear infinite;
-      z-index: -1;
-    }
-
-    @keyframes rotate { to { transform: rotate(360deg); } }
-
-    .container { width: min(1440px, 100%); margin: 0 auto; padding-left: 7vw; padding-right: 7vw; }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(20px);
-      background: rgba(5,5,5,.42);
-      border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-
-    .nav-inner {
-      min-height: 86px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 13px;
-      letter-spacing: 4px;
-      font-weight: 720;
-      font-size: 18px;
-    }
-
-    .brand-icon {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 20%, #fff6cb, var(--gold) 45%, #4f330c 78%);
-      box-shadow: 0 0 40px rgba(200,164,93,.26);
-    }
-
-    .brand span { color: var(--gold); }
-
-    nav { display: flex; align-items: center; gap: 34px; color: #c9c0b1; font-size: 13px; letter-spacing: .9px; }
-    nav a { position: relative; }
-    nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -9px; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
-    nav a:hover::after { transform: scaleX(1); }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(200,164,93,.45);
-      padding: 13px 20px;
-      border-radius: 999px;
-      font-size: 13px;
-      letter-spacing: .4px;
-      transition: transform .3s var(--ease), background .3s var(--ease), border-color .3s var(--ease);
-    }
-
-    .pill:hover { transform: translateY(-2px); background: rgba(200,164,93,.09); border-color: rgba(243,215,141,.75); }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.06fr .94fr;
-      gap: 68px;
-      align-items: center;
-      padding-top: 76px;
-      padding-bottom: 92px;
-      min-height: calc(100vh - 86px);
-    }
-
-    .eyebrow {
-      color: var(--gold-2);
-      letter-spacing: 3.4px;
-      text-transform: uppercase;
-      font-size: 12px;
-      margin-bottom: 25px;
-      opacity: 0;
-      animation: reveal .95s var(--ease) .25s forwards;
-    }
-
-    h1 {
-      font-size: clamp(58px, 8.7vw, 132px);
-      line-height: .86;
-      letter-spacing: -6.4px;
-      font-weight: 520;
-      max-width: 970px;
-      opacity: 0;
-      transform: translateY(24px);
-      animation: reveal .95s var(--ease) .42s forwards;
-    }
-
-    h1 em, .serif {
-      font-family: Georgia, "Times New Roman", serif;
-      font-style: italic;
-      font-weight: 400;
-      color: var(--gold);
-    }
-
-    .subtitle {
-      margin-top: 35px;
-      max-width: 610px;
-      color: #b9b0a2;
-      font-size: 18px;
-      line-height: 1.78;
-      opacity: 0;
-      transform: translateY(18px);
-      animation: reveal .95s var(--ease) .58s forwards;
-    }
-
-    .actions { display: flex; gap: 16px; margin-top: 42px; flex-wrap: wrap; opacity: 0; animation: reveal .95s var(--ease) .74s forwards; }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 17px 28px;
-      border-radius: 999px;
-      font-size: 14px;
-      letter-spacing: .45px;
-      transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
-      min-height: 54px;
-    }
-
-    .button:hover { transform: translateY(-3px); }
-    .primary { background: linear-gradient(135deg, var(--gold-2), var(--gold)); color: #050505; font-weight: 760; box-shadow: 0 20px 60px rgba(200,164,93,.18); }
-    .secondary { border: 1px solid rgba(255,255,255,.17); color: var(--cream); background: rgba(255,255,255,.035); }
-
-    .trust-row {
-      display: flex;
-      gap: 26px;
-      align-items: center;
-      margin-top: 52px;
-      color: #8d8579;
-      font-size: 12px;
-      letter-spacing: 1.8px;
-      text-transform: uppercase;
-      opacity: 0;
-      animation: reveal .95s var(--ease) .9s forwards;
-    }
-
-    .trust-row::before { content: ""; width: 58px; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); }
-
-    .visual {
-      height: 650px;
-      position: relative;
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(255,255,255,.14);
-      overflow: hidden;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,.13), rgba(255,255,255,.025)),
-        linear-gradient(180deg, #1a1814, #070707);
-      box-shadow: 0 55px 150px rgba(0,0,0,.72), inset 0 1px 0 rgba(255,255,255,.14);
-      opacity: 0;
-      transform: translateY(28px) scale(.98);
-      animation: revealVisual 1.1s var(--ease) .68s forwards;
-    }
-
-    @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
-    @keyframes revealVisual { to { opacity: 1; transform: translateY(0) scale(1); } }
-
-    .visual::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 54px 54px;
-      mask-image: linear-gradient(to bottom, black, transparent 70%);
-    }
-
-    .chrome-orb {
-      position: absolute;
-      width: 330px;
-      height: 330px;
-      border-radius: 50%;
-      top: 64px;
-      right: 48px;
-      background:
-        radial-gradient(circle at 28% 22%, #fff8ce 0%, #f2d58c 13%, transparent 25%),
-        radial-gradient(circle at 70% 78%, #120f0a 0%, transparent 38%),
-        conic-gradient(from 220deg, #3e2c11, #f8df99, #9b7429, #fff4c5, #4a3210, #c8a45d, #2a1c09);
-      box-shadow: inset -40px -55px 90px rgba(0,0,0,.42), inset 28px 25px 60px rgba(255,255,255,.2), 0 45px 120px rgba(200,164,93,.32);
-      animation: floatOrb 5.8s var(--ease) infinite alternate;
-    }
-
-    .chrome-orb::after {
-      content: "";
-      position: absolute;
-      inset: 34px 58px auto auto;
-      width: 106px;
-      height: 44px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.42);
-      filter: blur(15px);
-      transform: rotate(-23deg);
-    }
-
-    @keyframes floatOrb { from { transform: translate3d(0, 0, 0) rotate(-4deg); } to { transform: translate3d(-10px, 18px, 0) rotate(8deg); } }
-
-    .orbit, .orbit.two {
-      position: absolute;
-      width: 520px;
-      height: 520px;
-      top: -6px;
-      right: -54px;
-      border: 1px solid rgba(243,215,141,.26);
-      border-radius: 50%;
-      transform: rotate(-23deg) scaleY(.43);
-    }
-
-    .orbit.two { width: 690px; height: 690px; top: -95px; right: -138px; opacity: .42; animation: pulse 4s ease-in-out infinite; }
-    @keyframes pulse { 50% { opacity: .75; } }
-
-    .floating-card {
-      position: absolute;
-      left: 34px;
-      top: 38px;
-      width: 230px;
-      padding: 21px;
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 24px;
-      background: rgba(255,255,255,.075);
-      backdrop-filter: blur(20px);
-      box-shadow: 0 24px 80px rgba(0,0,0,.28);
-    }
-
-    .floating-card small { color: var(--muted); letter-spacing: 1.6px; text-transform: uppercase; font-size: 10px; }
-    .floating-card strong { display: block; margin-top: 13px; font-size: 31px; font-weight: 520; }
-
-    .dash-panel {
-      position: absolute;
-      left: 34px;
-      right: 34px;
-      bottom: 34px;
-      padding: 30px;
-      border-radius: 30px;
-      background: rgba(255,255,255,.08);
-      backdrop-filter: blur(26px);
-      border: 1px solid rgba(255,255,255,.16);
-      box-shadow: 0 25px 95px rgba(0,0,0,.34);
-    }
-
-    .panel-top { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .metric strong { display: block; color: #fff; font-size: 29px; font-weight: 520; margin-bottom: 8px; }
-    .metric span { color: #bbb2a5; font-size: 12px; line-height: 1.4; }
-    .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 24px 0; }
-
-    .growth {
-      position: relative;
-      height: 100px;
-      border-radius: 20px;
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
-      border: 1px solid rgba(255,255,255,.08);
-    }
-
-    .growth svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-    .growth path { stroke-dasharray: 650; stroke-dashoffset: 650; animation: draw 3.2s var(--ease) 1.2s forwards; }
-    @keyframes draw { to { stroke-dashoffset: 0; } }
-
-    .ticker {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 18px;
-    }
-
-    .ticker span {
-      padding: 8px 11px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.1);
-      color: #c9c0b1;
-      font-size: 11px;
-      letter-spacing: .8px;
-      background: rgba(255,255,255,.035);
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      padding-bottom: 92px;
-    }
-
-    .stat {
-      min-height: 180px;
-      padding: 30px;
-      border-radius: 28px;
-      background: rgba(255,255,255,.045);
-      border: 1px solid rgba(255,255,255,.085);
-      transition: transform .35s var(--ease), background .35s var(--ease), border-color .35s var(--ease);
-    }
-
-    .stat:hover { transform: translateY(-6px); background: rgba(255,255,255,.065); border-color: rgba(200,164,93,.26); }
-    .stat h3 { color: var(--gold); font-size: 35px; font-weight: 520; margin-bottom: 15px; }
-    .stat p { color: var(--muted); font-size: 14px; line-height: 1.58; }
-
-    .section { padding: 112px 0; }
-    .light { background: var(--cream); color: var(--ink); }
-    .dark { background: var(--black); color: var(--cream); }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 44px;
-      align-items: end;
-      margin-bottom: 60px;
-    }
-
-    .kicker { color: var(--gold); letter-spacing: 3px; text-transform: uppercase; font-size: 12px; margin-bottom: 20px; }
-    .light .kicker { color: #9f762d; }
-
-    h2 {
-      font-size: clamp(42px, 6.2vw, 86px);
-      line-height: .95;
-      letter-spacing: -3.8px;
-      font-weight: 520;
-      max-width: 920px;
-    }
-
-    .section-copy { max-width: 430px; color: #6d665b; line-height: 1.7; font-size: 16px; }
-    .dark .section-copy { color: #aaa295; }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .card {
-      min-height: 340px;
-      padding: 34px;
-      border-radius: 32px;
-      background: #fffaf0;
-      border: 1px solid rgba(0,0,0,.08);
-      transition: transform .35s var(--ease), box-shadow .35s var(--ease);
-    }
-
-    .card:hover { transform: translateY(-8px); box-shadow: 0 25px 80px rgba(20,15,5,.11); }
-    .number { color: #ad8537; margin-bottom: 96px; font-size: 13px; letter-spacing: 2.5px; }
-    .card h3 { font-size: 27px; margin-bottom: 16px; letter-spacing: -.8px; }
-    .card p { color: var(--muted-dark); line-height: 1.68; }
-
-    .thesis-grid {
-      display: grid;
-      grid-template-columns: .95fr 1.05fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .thesis-panel {
-      border-radius: var(--radius-xl);
-      border: 1px solid rgba(255,255,255,.1);
-      background: linear-gradient(145deg, rgba(255,255,255,.09), rgba(255,255,255,.025));
-      padding: 40px;
-      min-height: 520px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .thesis-panel::after {
-      content: "";
-      position: absolute;
-      width: 280px;
-      height: 280px;
-      border-radius: 999px;
-      right: -80px;
-      bottom: -90px;
-      background: radial-gradient(circle, rgba(200,164,93,.28), transparent 64%);
-    }
-
-    .thesis-panel h3 { font-size: clamp(36px, 4vw, 58px); line-height: .98; letter-spacing: -2.4px; font-weight: 520; max-width: 540px; }
-    .thesis-panel p { margin-top: 26px; color: #aaa295; line-height: 1.75; max-width: 520px; }
-
-    .process {
-      display: grid;
-      gap: 16px;
-    }
-
-    .process-item {
-      padding: 28px;
-      border-radius: 28px;
-      border: 1px solid rgba(255,255,255,.1);
-      background: rgba(255,255,255,.045);
-      display: grid;
-      grid-template-columns: 68px 1fr;
-      gap: 22px;
-      align-items: start;
-    }
-
-    .process-item span {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: rgba(200,164,93,.12);
-      color: var(--gold-2);
-      border: 1px solid rgba(200,164,93,.24);
-    }
-
-    .process-item h4 { font-size: 20px; margin-bottom: 8px; }
-    .process-item p { color: #aaa295; line-height: 1.6; }
-
-    .showcase {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 20px;
-    }
-
-    .show-card {
-      grid-column: span 4;
-      min-height: 320px;
-      border-radius: 34px;
-      padding: 32px;
-      border: 1px solid rgba(255,255,255,.1);
-      background: linear-gradient(145deg, rgba(255,255,255,.08), rgba(255,255,255,.025));
-      position: relative;
-      overflow: hidden;
-    }
-
-    .show-card.large { grid-column: span 8; }
-    .show-card::before { content: ""; position: absolute; inset: auto -20% -40% 30%; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(200,164,93,.23), transparent 65%); }
-    .show-card small { color: var(--gold-2); letter-spacing: 2px; text-transform: uppercase; font-size: 11px; }
-    .show-card h3 { margin-top: 72px; font-size: clamp(30px, 4vw, 56px); letter-spacing: -2px; line-height: .98; font-weight: 520; }
-    .show-card p { position: relative; margin-top: 20px; color: #aaa295; max-width: 560px; line-height: 1.65; }
-
-    .cta {
-      text-align: center;
-      padding: 126px 0;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(200,164,93,.20), transparent 31%),
-        linear-gradient(180deg, #0a0908, #050505);
-    }
-
-    .cta h2 { margin: 0 auto; max-width: 920px; }
-    .cta p { color: #aaa295; max-width: 650px; margin: 30px auto 42px; line-height: 1.75; font-size: 17px; }
-
-    footer {
-      padding: 34px 0;
-      border-top: 1px solid rgba(255,255,255,.08);
-      color: #766f64;
-      font-size: 13px;
-      background: #050505;
-    }
-
-    .footer-inner { display: flex; justify-content: space-between; gap: 20px; }
-
-    [data-reveal] {
-      opacity: 0;
-      transform: translateY(26px);
-      transition: opacity .8s var(--ease), transform .8s var(--ease);
-    }
-
-    [data-reveal].visible { opacity: 1; transform: translateY(0); }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
-      .loader { display: none; }
-      [data-reveal] { opacity: 1; transform: none; }
-    }
-
-    @media (max-width: 1080px) {
-      .hero, .thesis-grid { grid-template-columns: 1fr; }
-      .visual { height: 560px; }
-      .stats, .cards { grid-template-columns: repeat(2, 1fr); }
-      .section-head { display: block; }
-      .section-copy { margin-top: 24px; }
-      .show-card, .show-card.large { grid-column: span 12; }
-    }
-
-    @media (max-width: 720px) {
-      .container { padding-left: 22px; padding-right: 22px; }
-      nav { display: none; }
-      .brand { font-size: 15px; letter-spacing: 2.5px; }
-      .nav-inner { min-height: 76px; }
-      .pill { padding: 11px 14px; font-size: 12px; }
-      .hero { padding-top: 54px; gap: 42px; }
-      h1 { letter-spacing: -3.4px; }
-      .subtitle { font-size: 16px; }
-      .visual { height: 520px; border-radius: 30px; }
-      .chrome-orb { width: 260px; height: 260px; right: -12px; }
-      .floating-card { left: 22px; top: 24px; width: 205px; }
-      .dash-panel { left: 20px; right: 20px; bottom: 20px; padding: 22px; }
-      .panel-top { grid-template-columns: 1fr; }
-      .stats, .cards { grid-template-columns: 1fr; }
-      .section { padding: 78px 0; }
-      h2 { letter-spacing: -2.4px; }
-      .thesis-panel { min-height: auto; padding: 30px; }
-      .process-item { grid-template-columns: 1fr; }
-      .footer-inner { flex-direction: column; }
-    }
+    *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:#050505;color:#f5f1e8;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}.wrap{min-height:100vh;background:radial-gradient(circle at 82% 10%,rgba(200,164,93,.22),transparent 32%),radial-gradient(circle at 12% 88%,rgba(255,255,255,.07),transparent 30%),linear-gradient(135deg,#050505,#14120f 52%,#050505)}.container{width:min(1440px,100%);margin:0 auto;padding-left:7vw;padding-right:7vw}.nav{min-height:88px;display:flex;align-items:center;justify-content:space-between;gap:28px;border-bottom:1px solid rgba(255,255,255,.08);backdrop-filter:blur(20px)}.brand{display:flex;align-items:center;gap:12px;font-weight:750;letter-spacing:4px}.mark{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 30% 20%,#fff6cb,#c8a45d 45%,#4f330c 78%);color:#050505;font-family:Georgia,serif;font-weight:700}.brand span{color:#c8a45d}.links{display:flex;align-items:center;gap:30px;color:#c9c0b1;font-size:13px;letter-spacing:.9px}.pill{border:1px solid rgba(200,164,93,.55);border-radius:999px;padding:13px 20px}.hero{min-height:calc(100vh - 88px);display:grid;grid-template-columns:1.06fr .94fr;gap:68px;align-items:center;padding-top:76px;padding-bottom:92px}.kicker{color:#f2d58c;letter-spacing:3px;text-transform:uppercase;font-size:12px;margin-bottom:24px}.display{font-size:clamp(58px,8.7vw,132px);line-height:.86;letter-spacing:-6px;font-weight:520;max-width:970px}.serif{font-family:Georgia,serif;font-style:italic;color:#c8a45d;font-weight:400}.copy{margin-top:34px;color:#b9b0a2;font-size:18px;line-height:1.78;max-width:650px}.actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:42px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:17px 28px;border-radius:999px;border:1px solid rgba(255,255,255,.17);background:rgba(255,255,255,.035)}.btn.primary{background:linear-gradient(135deg,#f2d58c,#c8a45d);color:#050505;border:0;font-weight:800}.visual{height:650px;border-radius:42px;border:1px solid rgba(255,255,255,.14);background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.025)),linear-gradient(180deg,#1a1814,#070707);position:relative;overflow:hidden;box-shadow:0 55px 150px rgba(0,0,0,.72)}.orb{position:absolute;width:330px;height:330px;border-radius:50%;top:70px;right:54px;background:radial-gradient(circle at 28% 22%,#fff8ce 0%,#f2d58c 13%,transparent 25%),conic-gradient(from 220deg,#3e2c11,#f8df99,#9b7429,#fff4c5,#4a3210,#c8a45d,#2a1c09);box-shadow:inset -40px -55px 90px rgba(0,0,0,.42),0 45px 120px rgba(200,164,93,.32);animation:float 5s ease-in-out infinite alternate}.orb:after{content:'Å';position:absolute;inset:0;display:grid;place-items:center;color:rgba(5,5,5,.55);font-size:120px;font-family:Georgia,serif}.ring{position:absolute;width:540px;height:540px;top:-10px;right:-70px;border:1px solid rgba(242,213,140,.26);border-radius:50%;transform:rotate(-23deg) scaleY(.43)}.panel{position:absolute;left:34px;right:34px;bottom:34px;padding:30px;border-radius:30px;background:rgba(255,255,255,.08);backdrop-filter:blur(26px);border:1px solid rgba(255,255,255,.16)}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.metric strong{display:block;font-size:24px;margin-bottom:8px}.metric span{color:#bbb2a5;font-size:12px;line-height:1.4}.section{padding:108px 0}.light{background:#f5f1e8;color:#090909}.section h2{font-size:clamp(42px,6vw,86px);line-height:.94;letter-spacing:-3.8px;font-weight:520;max-width:920px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}.card{min-height:260px;border-radius:30px;padding:34px;background:#fffaf0;border:1px solid rgba(0,0,0,.08)}.card h3{font-size:25px;margin-bottom:16px}.card p{color:#5f584d;line-height:1.65}.darkcard{background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.025));border:1px solid rgba(255,255,255,.1);color:#f5f1e8}.darkcard p{color:#aaa295}.cta{text-align:center;background:radial-gradient(circle at 50% 0%,rgba(200,164,93,.2),transparent 32%),#050505}.cta h2{margin:0 auto}.cta p{margin:28px auto 40px;color:#aaa295;max-width:640px;line-height:1.7}footer{border-top:1px solid rgba(255,255,255,.08);padding:32px 0;color:#766f64;font-size:13px}@keyframes float{to{transform:translate(-12px,18px) rotate(8deg)}}@media(max-width:960px){.hero{grid-template-columns:1fr}.visual{height:520px}.grid,.metrics{grid-template-columns:1fr}.links{display:none}.display{letter-spacing:-3px}}
   </style>
 </head>
 <body>
-  <div class="loader" aria-hidden="true"><div class="loader-mark">LÅTCH CAPITAL</div></div>
-  <div class="noise" aria-hidden="true"></div>
-
-  <main class="hero-wrap">
-    <div class="aurora" aria-hidden="true"></div>
-    <header>
-      <div class="container nav-inner">
-        <a class="brand" href="#" aria-label="LÅTCH CAPITAL home"><span class="brand-icon" aria-hidden="true"></span>LÅTCH <span>CAPITAL</span></a>
-        <nav aria-label="Primary navigation">
-          <a href="#approach">Approach</a>
-          <a href="#thesis">Thesis</a>
-          <a href="#platform">Platform</a>
-          <a href="#contact">Access</a>
-        </nav>
-        <a class="pill" href="#contact">Private Access</a>
-      </div>
+  <main class="wrap">
+    <header class="nav container">
+      <a class="brand" href="index.html"><span class="mark">Å</span>LÅTCH <span>CAPITAL</span></a>
+      <nav class="links" aria-label="Primary navigation">
+        <a href="#thesis">Thesis</a>
+        <a href="#platform">Platform</a>
+        <a href="portal.html">Investor Portal</a>
+      </nav>
+      <a class="pill" href="portal.html">Private Access</a>
     </header>
 
-    <section class="container hero">
+    <section class="hero container">
       <div>
-        <p class="eyebrow">Private Capital · Strategic Advisory · New York</p>
-        <h1>Capital designed for the <em>next class</em> of ownership.</h1>
-        <p class="subtitle">LÅTCH CAPITAL partners with visionary founders, operators, and families to unlock disciplined growth, premium positioning, and long-term enterprise value.</p>
+        <p class="kicker">Holding Company · Venture Capital</p>
+        <h1 class="display">Capital for <span class="serif">enduring</span> ideas.</h1>
+        <p class="copy">LÅTCH CAPITAL invests in exceptional founders, operators, and ideas with a long-term view toward ownership, leverage, and durable value creation.</p>
         <div class="actions">
-          <a class="button primary" href="#contact">Request Private Introduction →</a>
-          <a class="button secondary" href="#approach">Explore the Approach</a>
-        </div>
-        <div class="trust-row">Quiet capital. Precise strategy. Durable outcomes.</div>
-      </div>
-
-      <div class="visual" aria-label="Animated private capital dashboard graphic">
-        <div class="orbit" aria-hidden="true"></div>
-        <div class="orbit two" aria-hidden="true"></div>
-        <div class="chrome-orb" aria-hidden="true"></div>
-        <div class="floating-card">
-          <small>Conviction Index</small>
-          <strong>94.8</strong>
-        </div>
-        <div class="dash-panel">
-          <div class="panel-top">
-            <div class="metric"><strong>$480M+</strong><span>Strategic capital evaluated</span></div>
-            <div class="metric"><strong>17</strong><span>Growth sectors monitored</span></div>
-            <div class="metric"><strong>∞</strong><span>Long-term conviction</span></div>
-          </div>
-          <div class="divider"></div>
-          <div class="growth" aria-hidden="true">
-            <svg viewBox="0 0 600 100" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="goldLine" x1="0" x2="1">
-                  <stop offset="0" stop-color="#7b5921" />
-                  <stop offset=".55" stop-color="#f3d78d" />
-                  <stop offset="1" stop-color="#c8a45d" />
-                </linearGradient>
-              </defs>
-              <path d="M0,82 C72,70 90,50 147,58 C205,67 222,22 282,34 C344,45 350,74 414,48 C488,18 514,20 600,12" fill="none" stroke="url(#goldLine)" stroke-width="4" stroke-linecap="round" />
-            </svg>
-          </div>
-          <div class="ticker"><span>CONTROL</span><span>CLARITY</span><span>PATIENCE</span><span>VALUE CREATION</span></div>
+          <a class="btn primary" href="portal.html">Enter Investor Portal →</a>
+          <a class="btn" href="#thesis">Explore Thesis</a>
         </div>
       </div>
-    </section>
-
-    <section class="container stats" id="strategy">
-      <article class="stat"><h3>01</h3><p>Private investment strategy built around control, clarity, and patience.</p></article>
-      <article class="stat"><h3>02</h3><p>Brand-level thinking for companies ready to command premium markets.</p></article>
-      <article class="stat"><h3>03</h3><p>Partnerships shaped for founders who want more than capital.</p></article>
-      <article class="stat"><h3>04</h3><p>Institutional-grade discipline with boutique precision.</p></article>
+      <div class="visual" aria-label="Premium capital visualization">
+        <div class="ring"></div>
+        <div class="orb"></div>
+        <div class="panel">
+          <div class="metrics">
+            <div class="metric"><strong>Long-term</strong><span>Ownership view</span></div>
+            <div class="metric"><strong>Category agnostic</strong><span>Good ideas first</span></div>
+            <div class="metric"><strong>Private</strong><span>Disciplined capital</span></div>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <section class="section light" id="approach">
+  <section class="section light" id="thesis">
     <div class="container">
-      <div class="section-head" data-reveal>
-        <div>
-          <p class="kicker">The Approach</p>
-          <h2>We invest where elegance meets execution.</h2>
-        </div>
-        <p class="section-copy">The best opportunities are not always loud. We look for companies with operational depth, brand leverage, and room for intelligent capital to transform perception into enterprise value.</p>
-      </div>
-      <div class="cards">
-        <article class="card" data-reveal><div class="number">I</div><h3>Capital Structuring</h3><p>Tailored financial architecture for companies entering their next phase of growth, acquisition, or repositioning.</p></article>
-        <article class="card" data-reveal><div class="number">II</div><h3>Strategic Advisory</h3><p>High-level guidance across brand, market positioning, operational refinement, and investor readiness.</p></article>
-        <article class="card" data-reveal><div class="number">III</div><h3>Portfolio Growth</h3><p>Long-term value creation through disciplined execution, modern systems, and elevated market perception.</p></article>
+      <p class="kicker">Investment Thesis</p>
+      <h2>We back exceptional ideas with a long-term ownership mindset.</h2>
+      <p class="copy" style="color:#625b51">LÅTCH CAPITAL operates as both a holding company and venture capital platform. We are category agnostic and focus on founders, operators, and opportunities capable of creating durable value.</p>
+      <div class="grid">
+        <article class="card"><h3>Capital</h3><p>Patient, precise, and intentional investment logic built for long-term ownership quality.</p></article>
+        <article class="card"><h3>Strategy</h3><p>Brand-level clarity, operating structure, and market positioning for ambitious builders.</p></article>
+        <article class="card"><h3>Platform</h3><p>A modern capital platform for founders, operators, investors, and strategic partners.</p></article>
       </div>
     </div>
   </section>
 
-  <section class="section dark" id="thesis">
-    <div class="container thesis-grid">
-      <div class="thesis-panel" data-reveal>
-        <p class="kicker">Investment Thesis</p>
-        <h3>Premium markets reward discipline, restraint, and unmistakable positioning.</h3>
-        <p>We combine capital intelligence with brand-level clarity to help companies become more ownable, more investable, and more enduring.</p>
-      </div>
-      <div class="process">
-        <article class="process-item" data-reveal><span>01</span><div><h4>Identify Hidden Leverage</h4><p>We study the operating model, market narrative, and capital needs to locate the highest-value inflection points.</p></div></article>
-        <article class="process-item" data-reveal><span>02</span><div><h4>Refine the Architecture</h4><p>We shape the business story, financing structure, and execution roadmap with premium-market discipline.</p></div></article>
-        <article class="process-item" data-reveal><span>03</span><div><h4>Scale With Control</h4><p>We support durable expansion without sacrificing taste, focus, or long-term ownership quality.</p></div></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section dark" id="platform">
+  <section class="section" id="platform">
     <div class="container">
-      <div class="section-head" data-reveal>
-        <div>
-          <p class="kicker">Platform</p>
-          <h2>A quieter, sharper way to build enterprise value.</h2>
-        </div>
-        <p class="section-copy">For founders, families, and operators who want a capital partner that thinks beyond the transaction.</p>
-      </div>
-      <div class="showcase">
-        <article class="show-card large" data-reveal><small>Advisory</small><h3>Strategy for companies entering their next era.</h3><p>Investor readiness, growth narrative, brand architecture, acquisition positioning, and operating clarity.</p></article>
-        <article class="show-card" data-reveal><small>Capital</small><h3>Patient, precise, intentional.</h3><p>Private capital logic designed around long-term ownership quality.</p></article>
-        <article class="show-card" data-reveal><small>Signals</small><h3>Markets move before consensus.</h3><p>We track category shifts, premium demand, and operator-led opportunities.</p></article>
-        <article class="show-card large" data-reveal><small>Legacy</small><h3>Built for founders who care about what remains.</h3><p>Beyond valuation, we focus on perception, trust, durability, and the compounding value of restraint.</p></article>
+      <p class="kicker">Platform</p>
+      <h2>A quieter, sharper way to build enterprise value.</h2>
+      <div class="grid">
+        <article class="card darkcard"><h3>Portfolio</h3><p>Future holdings, venture investments, and strategic ideas.</p></article>
+        <article class="card darkcard"><h3>Reports</h3><p>Private updates, operating notes, and investor communications.</p></article>
+        <article class="card darkcard"><h3>Opportunities</h3><p>Reviewed deals, new ideas, and emerging market signals.</p></article>
       </div>
     </div>
   </section>
 
-  <section class="cta" id="contact">
-    <div class="container" data-reveal>
+  <section class="section cta">
+    <div class="container">
       <p class="kicker">Private Access</p>
       <h2>Build with capital that understands legacy.</h2>
       <p>For founders, families, and operators building durable companies with taste, precision, and ambition.</p>
-      <a class="button primary" href="mailto:hello@latchdesignstudio.com?subject=Private%20Introduction%20-%20L%C3%85TCH%20CAPITAL">Request Private Introduction →</a>
+      <a class="btn primary" href="portal.html">Open Investor Portal →</a>
     </div>
   </section>
 
   <footer>
-    <div class="container footer-inner">
-      <div>© 2026 LÅTCH CAPITAL</div>
-      <div>New York · Private Capital · Strategic Advisory</div>
-    </div>
+    <div class="container">© 2026 LÅTCH CAPITAL · Holding Company · Venture Capital</div>
   </footer>
-
-  <script>
-    const revealItems = document.querySelectorAll('[data-reveal]');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.16 });
-    revealItems.forEach((item, index) => {
-      item.style.transitionDelay = `${Math.min(index * 55, 260)}ms`;
-      observer.observe(item);
-    });
-
-    const visual = document.querySelector('.visual');
-    const orb = document.querySelector('.chrome-orb');
-    const card = document.querySelector('.floating-card');
-    if (visual && orb && card && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      visual.addEventListener('pointermove', (event) => {
-        const rect = visual.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width - .5;
-        const y = (event.clientY - rect.top) / rect.height - .5;
-        orb.style.transform = `translate(${x * -24}px, ${y * -18}px) rotate(${x * 10}deg)`;
-        card.style.transform = `translate(${x * 18}px, ${y * 14}px)`;
-      });
-      visual.addEventListener('pointerleave', () => {
-        orb.style.transform = '';
-        card.style.transform = '';
-      });
-    }
-  </script>
 </body>
 </html>
