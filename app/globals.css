@@ -1,0 +1,25 @@
+:root {
+  --obsidian: #050505;
+  --ivory: #f5f1e8;
+  --stone: #a39a8e;
+  --gold: #c8a45d;
+  --line: rgba(255,255,255,.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--obsidian);
+  color: var(--ivory);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+a { color: inherit; text-decoration: none; }
+.container { width: min(1440px, 100%); margin: 0 auto; padding: 0 7vw; }
+.serif { font-family: Georgia, "Times New Roman", serif; font-style: italic; }
+.kicker { color: var(--gold); letter-spacing: .28em; text-transform: uppercase; font-size: 11px; font-weight: 700; }
+.display { font-size: clamp(58px, 8.8vw, 142px); line-height: .84; letter-spacing: -.07em; font-weight: 500; }
+.copy { color: var(--stone); line-height: 1.75; font-size: 17px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 54px; padding: 16px 26px; border-radius: 999px; border: 1px solid var(--line); }
+.btn.primary { background: linear-gradient(135deg, #f2d58c, var(--gold)); color: var(--obsidian); border: 0; font-weight: 800; }
+.section { padding: 118px 0; }
+.light { background: var(--ivory); color: var(--obsidian); }
